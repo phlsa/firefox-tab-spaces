@@ -5,10 +5,21 @@ $(document).ready( function() {
     $('.all-tabs').toggleClass( 'overview' );
   });
 
-  $('img').click( function( e ) {
-    var el = $( e.currentTarget );
+  $('.overview img').click( function( e ) {
     $('img').removeClass('active');
-    el.addClass('active');
+    $( e.currentTarget ).addClass('active');
     $('.all-tabs').removeClass('overview');
+  });
+
+  $('img').dblclick( function( e ) {
+    $('.all-tabs').toggleClass( 'overview' );
+  });
+
+  $('.group-thumb').click( function( e ) {
+    var g = $(e.currentTarget).attr('data-group');
+    $('.tab-group').removeClass('active');
+    $('.group-thumb').removeClass('active');
+    $('.tab-group[data-group='+g+']').addClass('active');
+    $(e.currentTarget).addClass('active');
   });
 });
