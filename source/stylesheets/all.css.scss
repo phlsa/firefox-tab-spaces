@@ -1,0 +1,71 @@
+@charset "utf-8";
+@import "compass";
+
+$window-left: 56px;
+$window-top: 35px;
+$window-width: 1080px;
+$window-height: 718px;
+
+* {
+  font-family: "Lucida Grande", "Lucida Unicode MS", sans-serif;
+}
+
+body {
+  color: #666;
+  text-shadow: 0 1px 0 #fff;
+}
+
+.frame {
+  width: 1195px;
+  height: 832px;
+  position: relative;
+  background-image: url('../images/frame.png');
+  background-repeat: no-repeat;
+}
+
+.switcher {
+  position:absolute;
+  z-index: 200;
+  right: $window-left + 30;
+  top: $window-top + 5px;
+}
+
+.all-tabs {
+  position:absolute;
+  img {
+    position:absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    @include transition( all 0.5s ease );
+  }
+  img.active {
+    z-index: 100;
+    opacity: 1;
+  }
+}
+
+.all-tabs.overview {
+  .tab-group {
+    display: none;
+  }
+  .tab-group.active {
+    display: block;
+    img {
+      opacity: 1;
+      transform-origin: 0 0;
+    }
+
+    @for $i from 1 to 6 {
+      img:nth-child( #{$i} ) {
+        $l: $i - 1;
+        $j: 0;
+        @if $l > 2 {
+          $j: 1;
+          $l: $l - 3;
+        }
+        @include transform( translate( #{70+$l*350}px, #{100 + $j*290}px ) scale( 0.3 ));
+      }
+    }
+  }
+}
