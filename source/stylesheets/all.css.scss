@@ -21,6 +21,7 @@ body {
   position: relative;
   background-image: url('../images/frame.png');
   background-repeat: no-repeat;
+  margin: 0 auto;
 }
 
 .switcher {
@@ -56,7 +57,7 @@ body {
 
 .all-tabs {
   position:absolute;
-  img {
+  .tab {
     position:absolute;
     top: 0;
     left: 0;
@@ -66,8 +67,31 @@ body {
     -ms-transform-origin: 0 0;
     transform-origin: 0 0;
     @include transition( all 0.3s ease );
+    .close-btn {
+      display: none;
+      position: absolute;
+      right: 5px;
+      top: 0;
+      background-color: #000;
+      color: #fff;
+      border: 8px solid #fff;
+      @include border-radius( 50% );
+      font-size: 60px;
+      padding-top: 15px;
+      padding-left: 5px;
+      width: 95px;
+      height: 85px;
+      text-align: center;
+      @include box-shadow( 0 8px 20px #000 );
+      opacity: 0;
+      @include transition( opacity 0.3s ease );
+      cursor: default;
+      &:hover {
+        opacity: 1!important;
+      }
+    }
   }
-  img.active {
+  .tab.active {
     z-index: 100;
     opacity: 1;
   }
@@ -79,12 +103,12 @@ body {
   }
   .tab-group.active {
     display: block;
-    img {
+    .tab {
       opacity: 1;
     }
 
     @for $i from 1 to 6 {
-      img:nth-child( #{$i} ) {
+      .tab:nth-child( #{$i} ) {
         $l: $i - 1;
         $j: 0;
         @if $l > 2 {
@@ -94,6 +118,11 @@ body {
         @include transform( translate( #{70+$l*350}px, #{170 + $j*270}px ) scale( 0.3 ));
       }
     }
+  }
+
+  &.close-possible .tab:hover .close-btn {
+    display: block;
+    opacity: 0.2;
   }
 }
 
