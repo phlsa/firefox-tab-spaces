@@ -26,12 +26,16 @@ body {
 .switcher {
   position:absolute;
   z-index: 200;
-  right: $window-left + 30;
-  top: $window-top + 5px;
-  font-size: 12px;
+  right: $window-left + 28px;
+  top: $window-top;
+  font-size: 16px;
   cursor: default;
+  background-image: url('../images/gradient.png');
+  background-repeat: repeat-x;
+  padding: 2px 0 18px 2px;
+  color: #909090;
   &:hover {
-    color: #333;
+    color: #666;
   }
 }
 
@@ -39,6 +43,7 @@ body {
   position:absolute;
   left: $window-left + $window-width - 220px;
   top: 80px;
+  z-index: 100;
   input {
     width: 180px;
     font-size: 12px;
@@ -97,7 +102,7 @@ body {
   position: absolute;
   left: $window-left;
   top: $window-top;
-  width: $window-width;
+  width: $window-width - 25;
   border-bottom: 1px solid #666;
   @include box-shadow( 0 1px 0 rgba(255,255,255,0.6) );
   padding: 20px 0 3px 26px;
@@ -111,6 +116,9 @@ body {
     @include border-radius( 2px );
     @include box-shadow( 0 2px 4px rgba(0,0,0,.6) );
     @include transition( all 0.3s ease );
+    &:hover {
+      border-color: #ddd;
+    }
   }
   .group-thumb.active {
     border: 4px solid #fff;
